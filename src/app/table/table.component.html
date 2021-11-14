@@ -28,23 +28,23 @@
     
       <div style="display:flex;margin-bottom:1%">        
         <input class="search form-control" type="text" name="Name" [(ngModel)]="search"   placeholder="Search.."/>
-        <button style="margin-left: 60%;margin-right: 1%;">Column visibility</button>
+        <button (click)="toggle()" style="margin-left: 60%;margin-right: 1%;" >Column visibility</button>
         <!-- <input type="button" value="Export PDF" class="btn btn-success" (click)="SavePDF()"> -->
-        <button> <span class="material-icons" style="font-size: 14px;margin-left: 1%;">
+        <button style="margin-right: 1%;"><span class="material-icons" style="font-size: 14px;margin-left:1%; padding-right:5px ;" >
           delete
           </span></button>
-          <button> <span class="material-icons" style="font-size: 14px;margin-right: 1%;">
-            import_export
+          <button style="margin-right: 1%"> <span class="material-icons" style="font-size: 14px;;">
+           open_in_new
             </span></button>
-          <button> <span class="material-icons" style="font-size: 14px;margin-right: 1%;">
-            open_in_new
+          <button type="button" (click)="filedownload()" > <span class="material-icons" style="font-size: 14px;margin-right: 1%;">
+            import_export 
             </span></button>
             
           
       
       </div>
 
-<div style ="width:1140px;overflow-x:scroll;">  
+<div style ="width:100%;overflow-x:auto;">  
 <table class="table table-striped">
    
   <thead>
@@ -55,15 +55,30 @@
         <th>PROJECT ID</th>
         <th>PROJECT TITLE</th>
         <Th>COMMODITY TYPE</Th>
-        <th>PROJECT OWNER</th>
+        <th *ngIf="display">PROJECT OWNER</th>
         <th>BUSINESS</th>
-        
+        <th>BUSINESS</th>
+        <th>BUSINESS</th>
+        <th>BUSINESS</th>
+        <th>BUSINESS</th>
+        <th>BUSINESS</th>
+        <th>BUSINESS</th>
+        <th>BUSINESS</th>
+        <th>BUSINESS</th>
+        <th>BUSINESS</th>
+        <th>BUSINESS</th>
+        <th>BUSINESS</th>
+        <th>BUSINESS</th>
+        <th>BUSINESS</th>
+        <th>BUSINESS</th>
 
+        
+        
    </tr>
    </thead>
   
    <tbody>
-        <tr *ngFor="let data of obj | filter:search |paginate: {itemsPerPage: 10 , currentPage: page};let i = index">
+        <tr *ngFor="let data of obj | filter:search |paginate: {itemsPerPage: 3 , currentPage: page};let i = index">
          <td><input type="checkbox" id="scales" name="scales"
           ></td>
 
@@ -82,7 +97,7 @@
         <td>{{data.projectID}}</td>  
         <td>{{data.projectTitle}}</td>  
         <td>{{data.commodityType}}</td>  
-        <td>{{data.projectOwner}}</td>  
+        <td *ngIf="display">{{data.projectOwner}}</td>  
         <td>{{data.Business}}</td>       
      
         </tr> 
@@ -96,3 +111,13 @@
 </pagination-controls>
 </div>
 </div>
+
+<div style="width:50%">
+  <ng-multiselect-dropdown
+    
+    [settings]="dropdownSettings"
+    [data]="dropdownList"
+    
+  >
+  </ng-multiselect-dropdown>
+  </div>
